@@ -1,0 +1,28 @@
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bsbdj?useUnicode=true
+    username: root
+    password: 12345
+    #utf8  与utf8mb4的区别
+    #1-4个字节，1.保存数字 字母 2-3.保存世界的各种语言 4.保存特殊符号
+    #在评论中包含了emoji表情符号
+    #为解决这4个字节的问题，我们需要设置两个地方
+    #1、character_set_server与其他字符集都是utf8mb4
+    #2、需要设置tomcat连接启动的初始化sql 注意 jdbc字符增加 ?useUnicode=true
+    tomcat:
+      init-s-q-l: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
+  thymeleaf:
+  #取消thymeleaf缓存，实现热部署
+    cache: false
+server:
+  port: 8083
+pagehelper:
+  helper-dialect: mysql
+  #查询合理化，如果查询页码小于1，则按第一页查询，查询页码大于最后一页，则查询最后一页
+  reasonable: true
+logging:
+  level:
+   com.laowang.bsbdj.mapper: debug
