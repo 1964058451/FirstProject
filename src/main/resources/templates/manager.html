@@ -111,6 +111,10 @@
                         table.reload("grdContent");
                     }
                 })
+            });
+            $("button[name='btnPreview']").click(function(){
+                var contentId = $(this).attr("content-id");
+                window.open("/preview/"+contentId+".html");
             })
         }
     </script>

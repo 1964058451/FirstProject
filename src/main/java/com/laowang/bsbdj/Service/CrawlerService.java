@@ -358,4 +358,26 @@ public class CrawlerService {
     public void delect(Long contentId){
         contentMapper.deleteByPrimaryKey(contentId);
     }
+
+    public Map previewDate(Long contentId){
+      Content content =  contentMapper.selectByPrimaryKey(contentId);
+      User user = userMapper.selectByPrimaryKey(content.getUid());
+        Forum forum = null;
+        if (content.getForumId() != null){
+            forum = forumMapper.selectByPrimaryKey(content.getForumId());
+        }
+        List<Map> comments = commentMapper.findByContentId(contentId);
+        Map param = new HashMap();
+        param.put("content",content);
+        param.put("user",user);
+        param.put("forum",forum);
+        param.put("comments",comments);
+        if(content.getContentType().equals("video")){
+            param.put("video",videoMapper.findByContentId(contentId).get(0));
+
+        }else if (content.getContentType().equals("image") || content.getContentType().equals("gif")){
+            param.put("image",imageMapper.findByContentId(contentId).get(0));
+        }
+        return param;
+    }
 }

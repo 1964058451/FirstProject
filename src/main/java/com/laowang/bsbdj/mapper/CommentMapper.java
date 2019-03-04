@@ -2,6 +2,9 @@ package com.laowang.bsbdj.mapper;
 
 import com.laowang.bsbdj.entity.Comment;
 
+import java.util.List;
+import java.util.Map;
+
 public interface CommentMapper {
     int deleteByPrimaryKey(Long commentId);
 
@@ -16,4 +19,6 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    public List<Map> findByContentId(Long contentId);
 }

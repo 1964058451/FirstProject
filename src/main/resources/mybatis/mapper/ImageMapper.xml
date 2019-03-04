@@ -114,4 +114,7 @@
       content_id = #{contentId,jdbcType=BIGINT}
     where image_id = #{imageId,jdbcType=BIGINT}
   </update>
+  <select id="findByContentId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * from t_image t where t.content_id = #{value}
+  </select>
 </mapper>

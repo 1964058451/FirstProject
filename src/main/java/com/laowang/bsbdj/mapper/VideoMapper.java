@@ -2,6 +2,8 @@ package com.laowang.bsbdj.mapper;
 
 import com.laowang.bsbdj.entity.Video;
 
+import java.util.List;
+
 public interface VideoMapper {
     int deleteByPrimaryKey(Long videoId);
 
@@ -14,4 +16,6 @@ public interface VideoMapper {
     int updateByPrimaryKeySelective(Video record);
 
     int updateByPrimaryKey(Video record);
+
+    public List<Video> findByContentId(Long contentId);
 }

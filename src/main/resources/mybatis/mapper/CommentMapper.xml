@@ -104,4 +104,8 @@
       content_id = #{contentId,jdbcType=BIGINT}
     where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
+
+  <select id="findByContentId" parameterType="java.lang.Long" resultType="java.util.Map">
+    select t.* , u.nickname , u.header from t_comment t , t_user u where t.uid = u.uid and t.content_id = #{value}
+  </select>
 </mapper>
